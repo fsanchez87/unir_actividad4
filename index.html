@@ -26,7 +26,7 @@
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-8">
-                        <table class="table">
+                        <table class="table" id="table">
                             <thead>
                                 <tr class="">
                                     <th class="fw-normal" scope="col">Producto</th>
@@ -35,22 +35,8 @@
                                     <th class="fw-normal" scope="col">Total</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="align-middle">
-                                    <td>
-                                        <span class="fw-bold">iFhone 13 Pro</span>
-                                        <p class="fw-lighter">Ref: 43QJ4LASDF</p>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex gap-1">
-                                            <button class="btn btn-outline-dark border-0">-</button>
-                                            <span class="d-block border p-3 rounded">0</span>
-                                            <button class="btn btn-outline-dark border-0">+</button>
-                                        </div>
-                                    </td>
-                                    <td class="">938,99<span>€</span></td>
-                                    <td class="">0<span>€</span></td>
-                                </tr>
+                            <tbody id="table-body">
+
                         </table>
                     </div>
 
@@ -81,7 +67,11 @@
         </section>
     </main>
 
-
+    <script src="/data.js"></script>
+    <script src="/Product.js"></script>
+    <script src="/ShoppingCart.js"></script>
+    <script src="/Shop.js"></script>
+    <script src="/script.js"></script>
     <script src="/assets/bootstrap.bundle.min.js"></script>
 </body>
 
