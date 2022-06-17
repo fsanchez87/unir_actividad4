@@ -13,8 +13,65 @@
 
 <body>
 
+    <header>
+        <nav class="navbar border-bottom">
+            <div class="container justify-content-start">
+                <a href="#" class="navbar-brand">agoodshop</a>
+            </div>
+        </nav>
+    </header>
 
-    <script src="/assets/bootstrap.min.js"></script>
+    <main>
+        <section>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-8">
+                        <table class="table" id="table">
+                            <thead>
+                                <tr class="">
+                                    <th class="fw-normal" scope="col">Producto</th>
+                                    <th class="fw-normal" scope="col">Cantidad</th>
+                                    <th class="fw-normal" scope="col">Unidad</th>
+                                    <th class="fw-normal" scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+
+                        </table>
+                    </div>
+
+                    <div class=" col-4 bg-light rounded">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="border-0" scope="row">Total</th>
+                                    <th class="fw-normal border-0" scope="col"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                </tr>
+                                <tr class="border-top ">
+                                    <th class="fw-normal text-uppercase border-0" scope="row">Total</th>
+                                    <td class="border-0 fw-bold text-end">0<span>€</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/data.js"></script>
+    <script src="/Product.js"></script>
+    <script src="/ShoppingCart.js"></script>
+    <script src="/Shop.js"></script>
+    <script src="/script.js"></script>
+    <script src="/assets/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
