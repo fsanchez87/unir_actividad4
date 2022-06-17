@@ -10,4 +10,8 @@ class Shop {
   getProducts() {
     return this.products;
   }
+
+  getProduct(SKU) {
+    return this.products.find((product) => product.SKU === SKU);
+  }
 }

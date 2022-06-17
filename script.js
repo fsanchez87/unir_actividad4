@@ -3,13 +3,19 @@ const shoppingCart = new ShoppingCart();
 
 document.addEventListener("DOMContentLoaded", () => {
   
+  const removeProductClickHandler = (event) => {
+    console.log("hola remove");
+  };
+  const addProductClickHandler = (event) => {
+    console.log("hola add");
+  };
+
   // Add products in html
   const renderedProducts = () => {
     const tableBodyEl = document.querySelector("#table-body");
     tableBodyEl.innerHTML = "";
 
     shop.getProducts().forEach((product) => {
-      
       // Create row
       const trEl = document.createElement("tr");
       trEl.setAttribute("class", "align-middle");
@@ -32,14 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
       divQuantityEl.setAttribute("class", "d-flex gap-1");
       const buttonRemove = document.createElement("button");
       buttonRemove.setAttribute("class", "btn btn-outline-dark border-0");
-      // TODO add data attributes
+      buttonRemove.setAttribute("info-SKU", product.SKU);
+      buttonRemove.addEventListener("click", removeProductClickHandler);
       buttonRemove.innerText = "-";
       const spanQuantityEl = document.createElement("span");
       spanQuantityEl.setAttribute("class", "d-block border p-3 rounded");
       spanQuantityEl.innerText = 0;
       const buttonAdd = document.createElement("button");
       buttonAdd.setAttribute("class", "btn btn-outline-dark border-0");
-      // TODO add data attributes
+      buttonAdd.setAttribute("info-SKU", product.SKU);
+      buttonAdd.addEventListener("click", addProductClickHandler);
       buttonAdd.innerText = "+";
 
       tdQuantityEl.appendChild(divQuantityEl);
