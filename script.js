@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderedProducts();
     renderedProductsShooppingCart();
   };
-  
+
   const addProductClickHandler = (event) => {
     const SKU = event.target.getAttribute("info-SKU");
     shoppingCart.setProduct(SKU);
@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // Create column for products
       const trEl = document.createElement("tr");
       const tdProductEl = document.createElement("td");
+      tdProductEl.setAttribute("class", "border-0")
       const product = shop.getProduct(productSKU);
       tdProductEl.innerText = product.title;
 
       // Create column for price
       const tdPriceEl = document.createElement("td");
+      tdPriceEl.setAttribute("class", "border-0 text-end")
       tdPriceEl.innerText = shoppingCart.getTotalPrice(product.SKU);
       const spanPriceEl = document.createElement("span");
       spanPriceEl.innerText = data.currency;
@@ -44,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create row for total price
     const trTotalsEl = document.createElement("tr");
+    trTotalsEl.setAttribute("class", "border-top")
     const tdTotalEl = document.createElement("td");
     tdTotalEl.setAttribute("class", "fw-normal text-uppercase border-0");
     tdTotalEl.innerText = "Total";
