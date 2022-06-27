@@ -1,8 +1,8 @@
 const shop = new Shop();
 const shoppingCart = new ShoppingCart();
+let currency = "";
 
 document.addEventListener("DOMContentLoaded", () => {
-  
   const removeProductClickHandler = (event) => {
     const SKU = event.target.getAttribute("info-SKU");
     shoppingCart.removeProduct(SKU);
@@ -27,16 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // Create column for products
       const trEl = document.createElement("tr");
       const tdProductEl = document.createElement("td");
-      tdProductEl.setAttribute("class", "border-0")
+      tdProductEl.setAttribute("class", "border-0");
       const product = shop.getProduct(productSKU);
       tdProductEl.innerText = product.title;
 
       // Create column for price
       const tdPriceEl = document.createElement("td");
-      tdPriceEl.setAttribute("class", "border-0 text-end")
+      tdPriceEl.setAttribute("class", "border-0 text-end");
       tdPriceEl.innerText = shoppingCart.getTotalPrice(product.SKU);
       const spanPriceEl = document.createElement("span");
-      spanPriceEl.innerText = data.currency;
+      spanPriceEl.innerText = currency;
       tdPriceEl.appendChild(spanPriceEl);
 
       trEl.appendChild(tdProductEl);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create row for total price
     const trTotalsEl = document.createElement("tr");
-    trTotalsEl.setAttribute("class", "border-top")
+    trTotalsEl.setAttribute("class", "border-top");
     const tdTotalEl = document.createElement("td");
     tdTotalEl.setAttribute("class", "fw-normal text-uppercase border-0");
     tdTotalEl.innerText = "Total";
@@ -56,11 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
     tdTotalShoppingCartPrice.innerText =
       shoppingCart.getTotalShoppingCartPrice();
     const spanTotalEL = document.createElement("span");
-    spanTotalEL.innerText = data.currency;
+    spanTotalEL.innerText = currency;
     tdTotalShoppingCartPrice.appendChild(spanTotalEL);
 
     trTotalsEl.appendChild(tdTotalEl);
-    trTotalsEl.appendChild(tdTotalShoppingCartPrice)
+    trTotalsEl.appendChild(tdTotalShoppingCartPrice);
     tableBodyEl.appendChild(trTotalsEl);
   };
 
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const tdPriceEl = document.createElement("td");
       tdPriceEl.innerText = product.price;
       const spanPriceEl = document.createElement("span");
-      spanPriceEl.innerText = data.currency;
+      spanPriceEl.innerText = currency;
 
       tdPriceEl.appendChild(spanPriceEl);
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const tdTotalEl = document.createElement("td");
       tdTotalEl.innerText = shoppingCart.getTotalPrice(product.SKU);
       const spanTotalEl = document.createElement("span");
-      spanTotalEl.innerText = data.currency;
+      spanTotalEl.innerText = currency;
 
       tdTotalEl.appendChild(spanTotalEl);
 
@@ -134,13 +134,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Load products in shop
-  data.products.forEach((product) => {
-    const newProduct = new Product(product.SKU, product.title, product.price);
-    shop.setProducts(newProduct);
-  });
-  console.log(shop.getProducts());
+  // Load data from API
+  fetch("https://jsonblob.com/api/985653623501635584")
+    .then((res) => res.json())
+    .then((data) => {
+      shop.setCurrency(data.currency);
+      const products = data.products;
+      products.forEach((product) => {
+        const newProduct = new Product(
+          product.SKU,
+          product.title,
+          product.price
+        );
+        shop.setProducts(newProduct);
+      });
 
-  renderedProducts();
+      currency = shop.getCurrency();
+      renderedProducts();
+    });
+
   renderedProductsShooppingCart();
 });
