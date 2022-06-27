@@ -1,6 +1,16 @@
 class Shop {
+  #currency;
+
   constructor(products = []) {
     this.products = products;
+  }
+
+  setCurrency(currency) {
+    this.#currency = currency;
+  }
+
+  getCurrency() {
+    return this.#currency;
   }
 
   setProducts(product) {
@@ -11,7 +21,12 @@ class Shop {
     return this.products;
   }
 
-  getProduct(SKU) {
-    return this.products.find((product) => product.SKU === SKU);
+  getProduct(productSKU) {
+    return this.products.find((product) => product.SKU === productSKU);
+  }
+
+  getPrice(productSKU) {
+    const product = this.products.find((product) => product.SKU === productSKU);
+    return product.price;
   }
 }
